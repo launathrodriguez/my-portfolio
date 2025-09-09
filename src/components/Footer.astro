@@ -3,13 +3,15 @@ import { Icon } from 'astro-icon/components';
 
 const socialMedia = [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/lauranrodriguezb", icon: "mdi:linkedin" },
-    { name: "GitHub", url: "https://github.com/launathrodriguez", icon: "mdi:github" }
+    { name: "GitHub", url: "https://github.com/launathrodriguez", icon: "mdi:github" },
+    { name: "Whatsapp", url: "https://wa.me/573023047187", icon: "mdi:whatsapp" },
+    { name: "Email", url: "mailto:lauranrodriguezb@gmail.com", icon: "mdi:email" }
 ];
 
 const rightsLabel = Astro.props.rightsLabel;
 ---
 <footer class="d-flex flex-column align-items-center py-4">
-    <button class="d-flex">
+    <button class="d-flex justify-content-center align-items-center mb-3">
         {socialMedia.map((platform) => (
             <a href={platform.url} target="_blank" rel="noopener noreferrer">
                 <Icon name={platform.icon} class="icon" />
