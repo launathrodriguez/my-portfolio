@@ -5,24 +5,24 @@ const { title } = Astro.props;
 const experience = Astro.props.experience;
 ---
 
-<section  id="experience" class="experience-container">
+<section  id="experience" class="experience__container">
     <h1 class="mb-5">{title}</h1>
     <Timeline experience={experience} />
 </section>
 
 <style>
-.experience-container {
+.experience__container {
     padding: 5rem 25rem;
 }
 
 @media (max-width: 1024px) {
-  .experience-container {
+  .experience__container {
     padding: 2rem 5rem;
   }
 }
 
 @media (max-width: 600px) {
-  .experience-container {
+  .experience__container {
     padding: 1rem 2rem;
   }
 }

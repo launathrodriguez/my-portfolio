@@ -4,13 +4,13 @@ import ThemeToggle from "./ThemeToggle.astro";
 const menuLabels = Astro.props.menuLabels;
 
 const menuItems = [
-  { label: menuLabels.home, href: "/en/" },
+  { label: menuLabels.home, href: "" },
   { label: menuLabels.experience, href: "#experience" },
   { label: menuLabels.about, href: "#about" }
 ];
 ---
 
-<header class="header d-flex align-items-center justify-content-between">
+<div class="header__container d-flex align-items-center justify-content-between">
   <h2 class="gradient-text mt-3 d-none d-md-block">Laura Nathalia Rodriguez</h2>
 
   <nav class="navbar-wrapper" aria-label="Primary">
@@ -24,10 +24,10 @@ const menuItems = [
   </nav>
 
   <ThemeToggle class="mt-3 d-none d-md-block" />
-</header>
+</div>
 
 <style>
-.header {
+.header__container {
   width: 100%;
   padding: 3rem 15rem;
 }
@@ -72,8 +72,15 @@ a:hover {
   -webkit-text-fill-color: transparent;
 }
 
+@media (max-width: 1440px) {
+  .header__container {
+    padding: 3rem 15rem;
+  }
+  
+}
+
 @media (max-width: 1024px) {
-  .header {
+  .header__container {
     padding: 2rem 1rem;
   }
 
@@ -94,7 +101,7 @@ a:hover {
 }
 
 @media (max-width: 600px) {
-  .header {
+  .header__container {
     padding: 2rem 1rem;
   }
 
