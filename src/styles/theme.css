@@ -9,7 +9,7 @@
 [data-theme="light"] {
     --bg-color: var(--white);
     --bg-color-secondary: var(--primary-60);
-    --bg-gradient:  linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
+    --bg-gradient: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
     --text-color: var(--gray-0);
     --text-color-secondary: var(--secondary-90);
     --text-gradient: var(--text-gradient-light);
@@ -17,6 +17,9 @@
     --navbar-bg: #d9b9fa68;
     --navbar-border:  0.03px solid #6b2ce075;
     --timeline-color: var(--gray-20);
+    background-image:
+        radial-gradient(1200px 800px at 85% 15%, color-mix(in oklab, var(--primary-100) 60%, transparent), transparent 60%),
+        radial-gradient(900px 600px at 10% 75%, color-mix(in oklab, var(--primary-200) 50%, transparent), transparent 65%);
 }
 
 [data-theme="dark"] {
@@ -38,6 +41,9 @@
     --navbar-bg: #6325ba6f;
     --navbar-border: 0.03px solid #9575d2eb;
     --timeline-color: var(--gray-70);
+    background-image:
+        radial-gradient(1200px 800px at 80% 15%, color-mix(in oklab, var(--primary-700) 40%, transparent), transparent 60%),
+        radial-gradient(900px 600px at 15% 85%, color-mix(in oklab, var(--primary-600) 25%, transparent), transparent 65%);
 }
 
 *{
@@ -56,9 +62,7 @@ html {
 body {
 	width: 100%;
     color: var(--text-color) !important;
-    background: var(--bg-gradient) no-repeat;
-    background: var(--bg-gradient) no-repeat;
-    min-height: 100%;
+    background: var(--bg-gradient);
 }
 main {
 	align-self: center;
@@ -67,9 +71,13 @@ main {
 body::before {
   content: "";
   position: fixed;
-  inset: 0;               /* top/right/bottom/left: 0 */
-  z-index: -1;            /* por detrás del contenido */
+  inset: 0;            
+  z-index: -1;           
   pointer-events: none;
+  will-change: transform;
+  background-repeat: no-repeat;
+    background-attachment: fixed; 
+  background-size: cover;
   background: var(--bg-gradient);
 }
 

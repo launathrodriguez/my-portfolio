@@ -5,17 +5,30 @@ import Hero from '../../components/hero/Hero.astro';
 import Experience from '../../components/experience/Experience.astro';
 import Footer from '../../components/Footer.astro';
 import LanguageSelector from '../../components/LanguageSelector.astro';
+import Projects from '../../components/projects/Projects.astro';
 
 const experience = [
   {
-    role: "Frontend Analyst Developer - Tech Lead",
+    role: "Frontend Senior Analyst Developer - Tech Lead",
     company: "Cobre",
     period: "2020 - Present",
-    summary: "Build and implement high-quality features and maintain existing ones while collaborating with designers and backend developers to create seamless user experiences. Decission-making on technical architecture to ensure scalability and performance of applications, implementing best practices for code quality and code testing as part of the development process. Integrate tools that provides user events and analytics to monitor user interactions, ensuring that applications meet user needs and business goals and monitor the application behavior."
+    summary: "Design and implementation of high-quality features and maintenance of existing ones, collaborating with designers and backend developers to create seamless user experiences. Participation in technical architecture decision-making to ensure scalability and performance. Implementation of Microfrontends in Vue, end-to-end testing with Playwright, and Design Systems in Storybook. Data analysis of functionalities to support decision-making regarding business objectives. Experience with Node.js in the Backend-for-Frontend (BFF) layer to optimize communication between services and the frontend."
+  },
+  {
+    role: "Frontend Analyst Developer",
+    company: "Cobre",
+    period: "2021 - 2022",
+    summary: "Responsive development of features for web applications (SPA) using Angular and Ionic, ensuring an optimal and fluid user experience. Integration of tools for tracking and monitoring events and user analytics (Google Analytics/Mixpanel). Integration of tests into the development workflow."
+  },
+  {
+    role: "Frontend Junior Developer",
+    company: "Cobre",
+    period: "2020 - 2021",
+    summary: "Development of features for mobile applications in Ionic and backend service integration. Execution of Proofs of Concept (PoC) to validate technical approaches. Implementation of Feature Flags to manage the dynamic activation of functionalities. Collaboration in the creation and maintenance of technical documentation."
   }
 ];
 
-const personalDescription = "Front-end Developer passionate about building responsive and accessible web applications. I combine modern stacks and frameworks with a strong business understanding to transform objectives into measurable and impactful digital experiences. My technical experience allows me to efficiently bridge the gap between design and development, ensuring seamless collaboration and successful product delivery."
+const personalDescription = "Front-end Developer passionate about building responsive and accessible web applications. I combine modern stacks and frameworks with a strong business understanding to transform objectives into measurable and impactful digital experiences. My technical experience allows me to efficiently bridge the gap between design and development, ensuring seamless collaboration and successful product delivery. I am driven by continuous learning and adapting to new technologies to deliver innovative and high-quality solutions."
 
 const personalItems = {
 	location: "Location",
@@ -28,20 +41,43 @@ const personalItems = {
 const menuLabels = {
 	home: "Home",
 	experience: "Experience",
-	about: "About"
+	projects: "Projects"
 };
+
+const projectsLabels = {
+  title: "Projects",
+  content: [
+    {
+      name: "Mobile Application",
+      description: "Used to receive and withdraw money by users of Family Compensation Funds in Colombia.",
+      technologies: ["angular", "ionic"]
+    },
+    {
+      name: "Web Portal",
+      description: "First version of the web portal for business use, allowing account, transaction, movement and report management all in one place. Responsive design.",
+      technologies: ["angular", "ionic"]
+    },
+    {
+      name: "Web Portal",
+      description: "Improvements in performance and user experience, with a complete redesign and new features. Micro frontends (MFEs) architecture. Design Systems construction and integration.",
+      technologies: ["vue", "pinia", "ts"]
+    }
+  ]
+}
+
 ---
 
 <Layout style="margin: 100px;">
 	<Header menuLabels={menuLabels} />
 	<main>
-		<LanguageSelector />
 		<Hero 
 			description={personalDescription} 
 			personalItems={personalItems} />
 		<Experience 
 			title="Work Experience"
 			experience={experience} />
+		<Projects title={projectsLabels.title} projects={projectsLabels.content} />
+		<LanguageSelector />
 	</main>
 	<Footer rightsLabel="All rights reserved." />
 </Layout>

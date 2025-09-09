@@ -5,17 +5,30 @@ import Hero from '../../components/hero/Hero.astro';
 import Experience from '../../components/experience/Experience.astro';
 import Footer from '../../components/Footer.astro';
 import LanguageSelector from '../../components/LanguageSelector.astro';
+import Projects from '../../components/projects/Projects.astro';
 
 const experience = [
-  {
-  	role: "Frontend Analyst Developer - Tech Lead",
-  	company: "Cobre",
-  	period: "2020 - Presente",
-  	summary: "Diseño e implementación de funcionalidades de alta calidad y mantenimiento de las existentes, colaborando con diseñadores y desarrolladores backend para crear experiencias de usuario fluidas. Participo en la toma de decisiones sobre arquitectura técnica para garantizar la escalabilidad y el rendimiento de las aplicaciones, aplicando buenas prácticas de calidad y pruebas de código como parte del proceso de desarrollo. Integro herramientas para registrar eventos y analíticas de usuario, monitoreando su comportamiento y asegurando que las aplicaciones cumplan tanto con las necesidades del usuario como con los objetivos del negocio."
+  	{
+  		role: "Frontend Senior Analyst Developer - Tech Lead",
+  		company: "Cobre",
+  		period: "2020 - Presente",
+  		summary: "Diseño e implementación de funcionalidades de alta calidad y mantenimiento de las existentes, colaborando con diseñadores y desarrolladores backend para crear experiencias de usuario fluidas. Participación en la toma de decisiones sobre arquitectura técnica para garantizar la escalabilidad y el rendimiento. Implementación de Microfrontends en Vue, Pruebas End-to-end con Playwright y Design Systems en Storybook. Análisis de datos de las funcionalidades para toma de decisiones respecto a los objetivos del negocio. Acercamiento a Node.js en el Backend-for-frontend (BFF) para optimizar la comunicación entre los servicios y el frontend."
+	},
+	{
+		role: "Frontend Analyst Developer",
+		company: "Cobre",
+		period: "2021 - 2022",
+		summary: "Desarollo responsivo de funcionalidades para aplicaciones web (SPA) usando Angular y Ionic, asegurando una experiencia de usuario óptima y fluída. Integración de herramientas para medición y monitoreo de eventos y analíticas de usuario (Google Analytics/Mixpanel). Integración de pruebas en el flujo de desarrollo."
+	},
+	{
+		role: "Frontend Junior Developer",
+		company: "Cobre",
+		period: "2020 - 2021",
+		summary: "Desarrollo de funcionalidades para aplicaciones móviles en Ionic e integración de servicios backend. Ejecución de Pruebas de concepto (PoC) para validar enfoques técnicos. Implementación de Features Flags para gestionar la activación dinámica de funcionalidades. Colaboración en la creación y mantenimiento de documentación técnica."
 	}
 ];
 
-const personalDescription = "Desarrolladora Frontend apasionada por construir aplicaciones web responsivas y accesibles. Combino tecnologías y frameworks modernos con una sólida comprensión del negocio para transformar objetivos en experiencias digitales medibles e impactantes. Mi experiencia técnica me permite cerrar eficientemente la brecha entre diseño y desarrollo, asegurando una colaboración fluida y una entrega exitosa de proyectos."
+const personalDescription = "Desarrolladora Frontend apasionada por construir aplicaciones web responsivas. Combino tecnologías y frameworks modernos con una sólida comprensión del negocio para transformar objetivos en experiencias digitales medibles e impactantes. Mi experiencia técnica me permite cerrar eficientemente la brecha entre diseño y desarrollo, asegurando una colaboración fluida y una entrega exitosa del producto. Me motiva el aprendizaje continuo y la adaptación a nuevas tecnologías para ofrecer soluciones innovadoras y de alta calidad."
 
 
 const personalItems = {
@@ -29,8 +42,30 @@ const personalItems = {
 const menuLabels = {
 	home: "Inicio",
 	experience: "Experiencia",
-	about: "Acerca de"
+	projects: "Proyectos"
 };
+
+const projectsLabels = {
+  title: "Proyectos",
+  content: [
+    {
+      name: "Aplicación móvil",
+      description: "Utilizada para recibir y retirar dinero por usuarios de Cajas de compensación en Colombia.",
+      technologies: ["angular", "ionic"]
+    },
+    {
+      name: "Portal Web",
+      description: "Primera versión del portal web para uso empresarial, permitiendo gestionar cuentas, transacciones, movimientos e informes en un solo lugar. Diseño responsivo.",
+      technologies: ["angular", "ionic"]
+    },
+    {
+      name: "Portal Web",
+      description: "Mejoras en rendimiento y experiencia de usuario, con un rediseño completo y nuevas funcionalidades. Arquitectura de micro frontends (MFEs). Construcción e integración de Design Systems.",
+      technologies: ["vue", "pinia", "ts"]
+    }
+  ]
+}
+
 ---
 
 <Layout style="margin: 100px;">
@@ -40,13 +75,12 @@ const menuLabels = {
 		<Hero 
 			description={personalDescription} 
 			personalItems={personalItems} />
-		<LanguageSelector />
 		<Experience 
 			title="Experiencia laboral"
 			experience={experience} />
+		<Projects title={projectsLabels.title} projects={projectsLabels.content} />
+		<LanguageSelector />
 	</main>
 	<Footer rightsLabel="Todos los derechos reservados." />
 </Layout>
-
-<style>
-</style>
+<style></style>

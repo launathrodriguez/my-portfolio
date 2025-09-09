@@ -16,20 +16,32 @@ const skills = [
 ]
 ---
 
-<section>
-    <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 2rem;">
-      {skills.map((skill) => (
-        <div class="square flex-column flex-md-row">
-          <div class="container d-flex flex-column align-items-center">
-            <img src={skill.logo} alt={skill.name} style="width: 40px; height: 40px; object-fit: contain;" />
-            <p class="text d-none d-md-block">{skill.name}</p>
-          </div>
+<section id="skills">
+  <div class="d-flex flex-wrap justify-content-center align-items-center skills-grid">
+    {skills.map((skill) => (
+      <div class="square flex-column flex-md-row">
+        <div class="container d-flex flex-column align-items-center">
+          <img src={skill.logo} alt={skill.name} class="skill-logo" aria-label={skill.name} />
+          <p class="text d-none d-md-block">{skill.name}</p>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </div>
-
 </section>
+
+<script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+    window.anime({
+      targets: '.square',
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      easing: 'easeOutExpo',
+      duration: 800,
+      delay: anime.stagger(100, { start: 300 }),
+    });
+  });
+</script>
+
 
 <style>
 .square {
@@ -40,6 +52,8 @@ const skills = [
   border-radius: 1rem;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(41, 187, 228, 0.765);
+  opacity: 0;
+  transition: transform 220ms ease;
 }
 
 .square:hover {
@@ -48,8 +62,7 @@ const skills = [
   color: var(--text-gradient);
 }
 
-.square { transition: transform 220ms ease; }
-.square:hover, .square:focus { transform: scale(1.15); }
+.square:hover, .square:focus { transform: scale(1.15) !important; }
 
 .container {
   margin-top: 1.5rem;
@@ -64,6 +77,16 @@ const skills = [
 
 .text:hover {
   color: var(--text-color);
+}
+
+.skills-grid {
+  gap: 2rem;
+}
+
+.skill-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 @media (max-width: 1024px) {

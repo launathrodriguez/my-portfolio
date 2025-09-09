@@ -10,22 +10,21 @@ const experience: Array<{
 <section class="timeline">
   <ol class="tl" role="list">
     {experience.map(({ role, company, period, summary }, i) => (
-      <li class="tl-item d-flex">
-        <span class="tl-dot"></span>
-        <div class="tl-content row d-flex justify-content-between">
-          <header class="tl-header col-12 col-md-4">
-            <h3 class="tl-title">{role}</h3>
-            <p class="tl-company">{company}</p>
-            <p class="tl-period">{period}</p>
-          </header>
-          <div class="tl-container d-flex justify-content-end col-11 col-md-7">
-            <p class="tl-summary">{summary}</p>
-          </div>
+    <li class="tl-item d-flex">
+      <span class={`tl-dot ${i === 0 ? "blink" : ""}`}></span>
+      <div class="tl-content row d-flex justify-content-between">
+        <header class="tl-header col-12 col-md-4">
+          <h3 class="tl-title">{role}</h3>
+          <p class="tl-company">{company}</p>
+          <p class="tl-period">{period}</p>
+        </header>
+        <div class="tl-container d-flex justify-content-end col-11 col-md-7">
+          <p class="tl-summary">{summary}</p>
         </div>
-      </li>
-    ))}
+      </div>
+    </li>
+))}
   </ol>
-
 </section>
 
 <style>
@@ -38,12 +37,27 @@ const experience: Array<{
   position: relative;
 }
 .tl-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--navbar-bg);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-color-secondary);
   box-shadow: 0 0 0 4px rgba(161,140,209,.15), 0 6px 16px rgba(0,0,0,.35);
   margin-right: 1rem;
   position: absolute;
   left: -0.7rem;
+}
+
+.tl-dot.blink {
+  animation: blink 1.5s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
 }
 
 .tl-container {

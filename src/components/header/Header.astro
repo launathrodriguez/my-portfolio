@@ -6,7 +6,7 @@ const menuLabels = Astro.props.menuLabels;
 const menuItems = [
   { label: menuLabels.home, href: "" },
   { label: menuLabels.experience, href: "#experience" },
-  { label: menuLabels.about, href: "#about" }
+  { label: menuLabels.projects, href: "#projects" }
 ];
 ---
 
@@ -72,9 +72,16 @@ a:hover {
   -webkit-text-fill-color: transparent;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1920px) {
   .header__container {
     padding: 3rem 15rem;
+  }
+
+}
+
+@media (max-width: 1440px) {
+  .header__container {
+    padding: 3rem 2rem;
   }
   
 }
