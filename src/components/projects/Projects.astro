@@ -8,7 +8,7 @@ const logoBasePath = "/assets/logos/";
     <div class=" d-flex align-items-center justify-content-center flex-wrap">
         <h1>{title}</h1>
     </div>
-    <article class="d-flex">
+    <article class="d-flex flex-wrap">
     {projects.map((project: { name: string; description: string; technologies: string[] }) => (
         <article class="project__box">
             <h3>{project.name}</h3>
@@ -50,5 +50,17 @@ const logoBasePath = "/assets/logos/";
 
 .project-logo {
     margin-right: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .projects__container {
+    padding: 2rem 5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects__container {
+    padding: 1rem 2rem;
+  }
 }
 </style>
