@@ -1,0 +1,44 @@
+:root {
+  	--font-title: 'DM Serif Display', serif;
+	--font-body: 'Manrope', serif;
+    --text-sm: 1.2rem;
+	--text-md: 1.4rem;
+	--text-lg: 1.6rem;
+	--text-xl: 2rem;
+	--text-xxl: 3.1rem;
+	--text-xxxl: 4.4rem;
+	--text-title: 2rem;
+	--text-general: 1.6rem;
+	--text-button: 1.2rem;
+	--font: 'DM Serif Display', sans-serif;
+	--max-width: 108rem;
+	--hero-bg: linear-gradient(
+		-54deg,
+		var(--primary-0) -23%,
+		var(--primary-20),
+		var(--primary-0) 51%
+	);
+
+	--text-gradient-dark: radial-gradient(
+		circle farthest-corner at center center,
+		#58f9ff 0%,
+		#df44e7 100%
+	);
+
+	--text-gradient-light: radial-gradient(
+		circle farthest-corner at center center,
+		#e74cbe 0%,
+		#3813c2 100%
+	);
+}
+
+p {
+	color: var(--text-color) !important;
+	font-size: var(--text-general);
+	font-family: var(--font-body);
+}
+
+h1, h2 {
+	font-family: var(--font-title);
+	color: var(--text-color) !important;
+}

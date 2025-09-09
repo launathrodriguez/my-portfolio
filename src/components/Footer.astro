@@ -1,0 +1,49 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const socialMedia = [
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/lauranrodriguezb", icon: "mdi:linkedin" },
+    { name: "GitHub", url: "https://github.com/launathrodriguez", icon: "mdi:github" }
+];
+
+const rightsLabel = Astro.props.rightsLabel;
+---
+<footer class="d-flex flex-column align-items-center py-4">
+    <button class="d-flex">
+        {socialMedia.map((platform) => (
+            <a href={platform.url} target="_blank" rel="noopener noreferrer">
+                <Icon name={platform.icon} class="icon" />
+            </a>
+        ))}
+    </button>
+    <p class="text-center text-sm py-4">
+        &copy; {new Date().getFullYear()} Laura Nathalia. {rightsLabel}
+    </p>
+</footer>
+
+<style>
+footer {
+    background: var(--bg-color);
+    border-top: var(--navbar-border);
+    margin-top: 5rem;
+}
+
+button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    width: 60px;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+</style>

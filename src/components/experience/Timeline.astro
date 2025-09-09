@@ -1,0 +1,108 @@
+---
+const experience: Array<{
+  role: string;
+  company: string;
+  period: string;
+  summary: string;
+}> = Astro.props.experience;
+---
+
+<section class="timeline">
+  <ol class="tl" role="list">
+    {experience.map(({ role, company, period, summary }, i) => (
+      <li class="tl-item d-flex">
+        <span class="tl-dot"></span>
+        <div class="tl-content row d-flex justify-content-between">
+          <header class="tl-header col-12 col-md-4">
+            <h3 class="tl-title">{role}</h3>
+            <p class="tl-company">{company}</p>
+            <p class="tl-period">{period}</p>
+          </header>
+          <div class="tl-container d-flex justify-content-end col-11 col-md-7">
+            <p class="tl-summary">{summary}</p>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+</section>
+
+<style>
+.timeline {
+  position: relative;
+}
+.tl-item {
+  border-left: 2px solid var(--timeline-color);
+  padding: 1rem 0 1rem 2rem;
+  position: relative;
+}
+.tl-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--navbar-bg);
+  box-shadow: 0 0 0 4px rgba(161,140,209,.15), 0 6px 16px rgba(0,0,0,.35);
+  margin-right: 1rem;
+  position: absolute;
+  left: -0.7rem;
+}
+
+.tl-container {
+  border-radius: 2rem;
+  border: var(--navbar-border);
+  padding: 1rem;
+  margin-left: 2rem;
+}
+
+.tl-summary {
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 1024px) {
+  .tl-item {
+    padding: 1rem 0 1rem 2rem;
+  }
+
+  .tl-dot {
+    margin-right: 0.5rem;
+  }
+
+  h3 {
+    font-size: var(--text-md);
+  }
+
+  p {
+    font-size: var(--text-xs);
+  }
+
+  .tl-container {
+    margin-left: 1rem;
+    padding: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tl-item {
+    padding: 0.25rem 0 0.25rem 2rem;
+  }
+
+  .tl-dot {
+    margin-right: 0.25rem;
+  }
+
+  h3 {
+    font-size: var(--text-md);
+  }
+
+  p {
+    font-size: var(--text-xs);
+  }
+
+  .tl-container {
+    margin-left: 0.5rem;
+    padding: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+</style>

@@ -1,0 +1,120 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+<script>
+    const button = document.getElementById('toggle-theme');
+
+    const savedTheme = localStorage.getItem('theme');
+    const currentTheme = savedTheme || 'light';
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    button?.addEventListener('click', () => {
+    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+
+</script>
+
+<theme-button class="theme-toggle-wrapper">
+    <button id="toggle-theme" class="d-flex justify-content-between align-items-center theme-toggle">
+        <span class="toggle-indicator"></span>
+        <span class="icon icon-light">
+            <Icon name="mdi:white-balance-sunny" width="20" height="20" />
+        </span>
+        <span class="icon icon-dark">
+            <Icon name="mdi:moon-and-stars" width="20" height="20" />
+        </span>
+    </button>
+</theme-button>
+
+<style>
+.theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rem;
+}
+
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    height: 32px;
+    background: var(--bg-color);
+    border-radius: 999rem;
+    border: none;
+    padding: 0rem 0.6rem;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--gray-30);
+}
+
+.theme-toggle .icon {
+  z-index: 1;
+  color: var(--text-color);
+}
+
+.theme-toggle .toggle-indicator {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: var(--primary-30);
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s ease;
+    z-index: 0;
+}
+
+html[data-theme="dark"] .theme-toggle .toggle-indicator {
+  transform: translateX(26px);
+}
+
+html[data-theme="dark"] .theme-toggle .icon-light {
+  color: var(--primary-80);
+}
+
+html[data-theme="dark"] .theme-toggle .icon-dark {
+  color: var(--white);
+}
+
+html[data-theme="light"] .theme-toggle .icon-dark {
+  color: var(--primary-80);
+}
+
+html[data-theme="light"] .theme-toggle .icon-light {
+  color: var(--white);
+}
+
+@media (max-width: 1024px) {
+  .theme-toggle-wrapper {
+    margin-left: 0;
+  }
+
+  .theme-toggle {
+    width: 50px;
+    height: 26px;
+    padding: 0rem 0.5rem;
+  }
+
+  .theme-toggle .toggle-indicator {
+    width: 20px;
+    height: 20px;
+    top: 3px;
+    left: 4.5px;
+  }
+
+  html[data-theme="dark"] .theme-toggle .toggle-indicator {
+    transform: translateX(20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .
+}
+
+</style>

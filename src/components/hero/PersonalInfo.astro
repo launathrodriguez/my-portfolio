@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const itemsLabels = Astro.props.items;
+
+const items = [
+    { label: itemsLabels.location, value: "Bogotá, COL", icon: "mdi:location" },
+    { label: itemsLabels.email, value: "lauranrodriguezb@gmail.com", icon: "mdi:email" },
+    { label: itemsLabels.phone, value: "+57 (302) 3047187", icon: "mdi:phone" },
+    { label: itemsLabels.linkedin, value: "www.linkedin.com/in/lauranrodriguezb", icon: "mdi:linkedin" },
+    { label: itemsLabels.github, value: "www.github.com/launathrodriguez", icon: "mdi:github" }
+];
+---
+
+<section>
+    <div>
+        {items.map((item) => (
+            <div class="personal-info-item d-flex align-items-center">
+                <span class="icon me-2">
+                    <Icon name={item.icon} />
+                </span>
+                <p class="label">{item.label}:</p>
+                <p class="label">{item.value}</p>
+            </div>
+        ))}
+    </div>
+</section>
+
+<style>
+.personal-info-item {
+    margin: 0.5rem 0.25rem; 
+}
+
+.label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    margin: 0;
+}
+</style>

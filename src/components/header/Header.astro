@@ -1,0 +1,116 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const menuLabels = Astro.props.menuLabels;
+
+const menuItems = [
+  { label: menuLabels.home, href: "/en/" },
+  { label: menuLabels.experience, href: "#experience" },
+  { label: menuLabels.about, href: "#about" }
+];
+---
+
+<header class="header d-flex align-items-center justify-content-between">
+  <h2 class="gradient-text mt-3 d-none d-md-block">Laura Nathalia Rodriguez</h2>
+
+  <nav class="navbar-wrapper" aria-label="Primary">
+    <ul class="navbar-item d-flex align-items-center justify-content-center m-0 p-0">
+      {menuItems.map(({ label, href }) => (
+        <li>
+          <a href={href}>{label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <ThemeToggle class="mt-3 d-none d-md-block" />
+</header>
+
+<style>
+.header {
+  width: 100%;
+  padding: 3rem 15rem;
+}
+
+.navbar-wrapper {
+  position: fixed;
+  top: 3rem;         
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  height: 5rem;
+  background: var(--navbar-bg);
+  border: var(--navbar-border);
+  border-radius: 999rem;
+  padding: 0.5rem 0.75rem;
+  backdrop-filter: blur(20px);
+}
+
+.navbar-item {
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+  line-height: 1.2;
+  padding: 2rem 3rem;
+  font-size: var(--text-xl);
+}
+
+a:hover {
+  color: var(--text-gradient);
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 2rem 1rem;
+  }
+
+  .navbar-wrapper {
+    top: 2rem;
+    height: 4rem;
+    padding: 0.25rem;
+  }
+
+  .navbar-item {
+    gap: 0.5rem;
+  }
+
+  a {
+    padding: 1rem 2rem;
+    font-size: var(--text-md);
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 2rem 1rem;
+  }
+
+  .navbar-wrapper {
+    top: 2rem;
+    height: 4rem;
+    padding: 0.25rem;
+  }
+
+  .navbar-item {
+    gap: 0.5rem;
+  }
+
+   a {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-md);
+  }
+}
+</style>

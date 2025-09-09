@@ -1,10 +1,10 @@
 ---
-import Header from '../components/header/Header.astro';
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/hero/Hero.astro';
-import Experience from '../components/experience/Experience.astro';
-import Footer from '../components/Footer.astro';
-import LanguageSelector from '../components/LanguageSelector.astro';
+import Header from '../../components/header/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/hero/Hero.astro';
+import Experience from '../../components/experience/Experience.astro';
+import Footer from '../../components/Footer.astro';
+import LanguageSelector from '../../components/LanguageSelector.astro';
 
 const experience = [
   {
@@ -32,17 +32,18 @@ const menuLabels = {
 };
 ---
 
-<Layout style="margin: 100px;">
+<Layout>
 	<Header menuLabels={menuLabels} />
-
 	<main>
-		<Hero description={personalDescription} personalItems={personalItems} />
-		<Experience title="Work Experience" experience={experience} />
 		<LanguageSelector />
+		<Hero 
+			description={personalDescription} 
+			personalItems={personalItems} />
+		<Experience 
+			title="Work Experience"
+			experience={experience} />
 	</main>
-
 	<Footer rightsLabel="All rights reserved." />
-
 </Layout>
 
 <style>

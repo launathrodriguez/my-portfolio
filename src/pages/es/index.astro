@@ -1,0 +1,52 @@
+---
+import Header from '../../components/header/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/hero/Hero.astro';
+import Experience from '../../components/experience/Experience.astro';
+import Footer from '../../components/Footer.astro';
+import LanguageSelector from '../../components/LanguageSelector.astro';
+
+const experience = [
+  {
+  	role: "Frontend Analyst Developer - Tech Lead",
+  	company: "Cobre",
+  	period: "2020 - Presente",
+  	summary: "Diseño e implementación de funcionalidades de alta calidad y mantenimiento de las existentes, colaborando con diseñadores y desarrolladores backend para crear experiencias de usuario fluidas. Participo en la toma de decisiones sobre arquitectura técnica para garantizar la escalabilidad y el rendimiento de las aplicaciones, aplicando buenas prácticas de calidad y pruebas de código como parte del proceso de desarrollo. Integro herramientas para registrar eventos y analíticas de usuario, monitoreando su comportamiento y asegurando que las aplicaciones cumplan tanto con las necesidades del usuario como con los objetivos del negocio."
+	}
+];
+
+const personalDescription = "Desarrolladora Frontend apasionada por construir aplicaciones web responsivas y accesibles. Combino tecnologías y frameworks modernos con una sólida comprensión del negocio para transformar objetivos en experiencias digitales medibles e impactantes. Mi experiencia técnica me permite cerrar eficientemente la brecha entre diseño y desarrollo, asegurando una colaboración fluida y una entrega exitosa de proyectos."
+
+
+const personalItems = {
+	location: "Ubicación",
+	email: "Correo",
+	phone: "Teléfono",
+	linkedin: "LinkedIn",
+	github: "GitHub"
+}
+
+const menuLabels = {
+	home: "Inicio",
+	experience: "Experiencia",
+	about: "Acerca de"
+};
+---
+
+<Layout style="margin: 100px;">
+	<Header menuLabels={menuLabels} />
+
+	<main>
+		<Hero 
+			description={personalDescription} 
+			personalItems={personalItems} />
+		<LanguageSelector />
+		<Experience 
+			title="Experiencia laboral"
+			experience={experience} />
+	</main>
+	<Footer rightsLabel="Todos los derechos reservados." />
+</Layout>
+
+<style>
+</style>

@@ -1,0 +1,94 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const skills = [
+  { name: 'Vue.js', logo: '/src/assets/logos/vue.svg' },
+  { name: 'Pinia', logo: '/src/assets/logos/pinia.svg' },
+  { name: 'Angular', logo: '/src/assets/logos/angular.svg' },
+  { name: 'React', logo: '/src/assets/logos/react.svg' },
+  { name: 'Astro', logo: '/src/assets/logos/astro.svg' },
+  { name: 'Javascript', logo: '/src/assets/logos/js.svg' },
+  { name: 'TypeScript', logo: '/src/assets/logos/ts.svg' },
+  { name: 'Node.js', logo: '/src/assets/logos/node.svg' },
+  { name: 'HTML5', logo: '/src/assets/logos/html5.svg' },
+  { name: 'Storybook', logo: '/src/assets/logos/storybook.svg' },
+  { name: 'Bootstrap', logo: '/src/assets/logos/bootstrap.svg' },
+  { name: 'Sass', logo: '/src/assets/logos/sass.png' },
+  { name: 'Playwright', logo: '/src/assets/logos/playwright.svg' }
+]
+---
+
+<section>
+    <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 2rem;">
+      {skills.map((skill) => (
+        <div class="square flex-column flex-md-row">
+          <div class="container d-flex flex-column align-items-center">
+            <img src={skill.logo} alt={skill.name} style="width: 40px; height: 40px; object-fit: contain;" />
+            <p class="text d-none d-md-block">{skill.name}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+.square {
+  width: 8rem;
+  height: 8rem;
+  background-color: var(--bg-color-secondary);
+  margin-top: 3rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(41, 187, 228, 0.765);
+}
+
+.square:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: var(--text-gradient);
+  color: var(--text-gradient);
+}
+
+.square { transition: transform 220ms ease; }
+.square:hover, .square:focus { transform: scale(1.15); }
+
+.container {
+  margin-top: 1.5rem;
+}
+
+.text {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--text-color-secondary) !important;
+  margin: 0.5rem 0 0 0;
+}
+
+.text:hover {
+  color: var(--text-color);
+}
+
+@media (max-width: 1024px) {
+  .square {
+    width: 6rem;
+    height: 6rem;
+    margin-top: 1rem;
+  }
+
+  .container {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .square {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .container {
+    margin-top: 0.25rem;
+  }
+}
+
+</style>

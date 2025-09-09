@@ -1,0 +1,67 @@
+---
+const languages = [
+  { code: 'en', label: 'English', path: '/en/', flag: '🇬🇧' },
+  { code: 'es', label: 'Español', path: '/es/', flag: '🇪🇸' }
+];
+---
+
+<form class="lang-selector-wrapper">
+  <select id="language-select">
+    {languages.map(lang => (
+      <option value={lang.path}>
+        <div class="d-flex align-items-center">
+          <span class="lang-flag">{lang.flag}</span>
+          <p class="lang-label">{lang.label}</p>
+        </div>
+      </option>
+    ))}
+  </select>
+</form>
+
+<script is:inline>
+  const select = document.getElementById('language-select');
+  const pathname = window.location.pathname;
+  const storedLang = localStorage.getItem('locale');
+
+  const currentLang = pathname.startsWith('/es') ? '/es/' : '/en/';
+
+
+  if (storedLang && storedLang !== currentLang && pathname === '/') {
+    window.location.href = storedLang;
+  }
+
+  select.value = currentLang;
+
+  select.addEventListener('change', (e) => {
+    const newLang = e.target.value;
+    localStorage.setItem('locale', newLang);
+
+    const restOfPath = pathname.replace(/^\/(es|en)/, '');
+    window.location.href = newLang.replace(/\/$/, '') + restOfPath;
+  });
+</script>
+
+<style>
+.lang-selector-wrapper {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+    z-index: 1100;
+}
+
+.lang-selector-wrapper select {
+  font-size: 3rem;
+  padding: 0 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid #444;
+  cursor: pointer;
+  height: 3rem;
+}
+
+.lang-label {
+  margin-left: 5rem;
+}
+</style>

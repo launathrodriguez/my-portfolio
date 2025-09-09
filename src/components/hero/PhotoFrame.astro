@@ -1,0 +1,58 @@
+<photo-frame class="photo-wrapper">
+  <div class="photo-border"></div>
+  <img src="/src/assets/me.jpeg" alt="Me" />
+</photo-frame>
+
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    window.anime({
+      targets: '.photo-border',
+      rotate: 360,
+      duration: 4000,
+      easing: 'linear',
+      loop: true
+    });
+  });
+</script>
+
+<style>
+:root {
+  --ring-thickness: 6px;
+}
+
+.photo-wrapper {
+  position: relative;
+}
+
+.photo-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 205px;
+  height: 205px;
+  margin-top: -102.5px;
+  margin-left: -102.5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(161,140,209,0.1) 20deg,
+    rgba(161,140,209,0.4) 60deg,
+    rgba(161,140,209,0.7) 100deg,
+    rgba(161,140,209,1) 140deg,
+    var(--primary-0) 320deg 360deg
+  );
+
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 0);
+          mask: radial-gradient(farthest-side, transparent calc(100% - var(--ring-thickness)), #000 0);
+  z-index: 1;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  position: relative;
+}
+</style>
