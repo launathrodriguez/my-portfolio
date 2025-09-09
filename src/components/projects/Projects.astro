@@ -8,19 +8,21 @@ const logoBasePath = "/assets/logos/";
     <div class=" d-flex align-items-center justify-content-center flex-wrap">
         <h1>{title}</h1>
     </div>
-    <article class="d-flex flex-wrap">
-    {projects.map((project: { name: string; description: string; technologies: string[] }) => (
-        <article class="project__box">
-            <h3>{project.name}</h3>
-            <p>{project.description}</p>
-            {project.technologies && (
+    <article class="row mt-4">
+        {projects.map((project: { name: string; description: string; technologies: string[] }) => (
+            <div class="col-12 col-md-4 p-2">
+                <div class="project__box h-100 d-flex flex-column justify-content-center p-3">
+                <h3>{project.name}</h3>
+                <p class="my-3">{project.description}</p>
+                {project.technologies && (
                 <ul class="project-technologies">
                     {project.technologies.map((tech) => (
                         <img src={`${logoBasePath}${tech}.svg`} alt={tech} class="project-logo" aria-label={tech} width="20" height="20" />
                     ))}
                 </ul>
                 )}
-            </article>
+                </div>
+            </div>
         ))}
     </article>
 </section>
@@ -36,13 +38,7 @@ const logoBasePath = "/assets/logos/";
     border-radius: 2rem;
     box-shadow: 0 2px 4px var(--secondary-50);
     padding: 2rem;
-    margin: 2rem;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     backdrop-filter: blur(20px);
-    width: 100%;
     transition: transform 220ms ease;
 }
 
