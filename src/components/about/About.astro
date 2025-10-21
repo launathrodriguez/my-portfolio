@@ -1,0 +1,78 @@
+--- 
+import { getLangFromUrl, useTranslations } from "../../i18n/utils"; 
+
+import Skills from "./Skills.astro";
+
+const lang = getLangFromUrl(Astro.url); 
+const t = useTranslations(lang); 
+--- 
+
+<script> 
+import { gsap } from 'gsap'; 
+import SplitType from 'split-type'; 
+
+const headingElement = document.getElementById('title'); 
+const photo = document.getElementById('photo');
+const content = document.getElementById('content');
+const skillsComponent = document.getElementsByClassName("skills");
+
+if (headingElement && skillsComponent) {
+    const tl = gsap.timeline();
+        
+
+    tl.from(
+        photo, {
+            x: -40,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.inOut",
+    })
+    .from(
+        content, {
+            x: 40,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.inOut",
+    })
+    .fromTo(
+        skillsComponent,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "circ.inOut" }
+    )
+
+    const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          tl.play();
+        } else {
+          tl.reverse();
+        }
+      });
+    },
+    {
+      threshold: 0.5, 
+    }
+  );
+
+  observer.observe(headingElement);
+}
+</script>
+
+<article id="about" class="about">
+    <div class="about__container row mb-5">
+        <photo-frame id="photo" class="col-6">
+            <img src="/assets/about-me.png" alt="Me" style="width: 410px; height: 280px;" />
+        </photo-frame>
+        <div id="content" class="col-6">
+            <p id="title">{t('about.description')}</p>
+        </div>
+    </div>
+    <Skills />
+</article>
+
+<style>
+.about {
+    padding: 5rem 25rem; 
+}
+</style>

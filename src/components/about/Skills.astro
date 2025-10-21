@@ -1,0 +1,117 @@
+---
+const skills = [
+  { name: 'Vue.js', logo: '/assets/logos/vue.svg' },
+  { name: 'Pinia', logo: '/assets/logos/pinia.svg' },
+  { name: 'Angular', logo: '/assets/logos/angular.svg' },
+  { name: 'React', logo: '/assets/logos/react.svg' },
+  { name: 'Astro', logo: '/assets/logos/astro.svg' },
+  { name: 'Javascript', logo: '/assets/logos/js.svg' },
+  { name: 'TypeScript', logo: '/assets/logos/ts.svg' },
+  { name: 'Node.js', logo: '/assets/logos/node.svg' },
+  { name: 'HTML5', logo: '/assets/logos/html5.svg' },
+  { name: 'Storybook', logo: '/assets/logos/storybook.svg' },
+  { name: 'Bootstrap', logo: '/assets/logos/bootstrap.svg' },
+  { name: 'Sass', logo: '/assets/logos/sass.png' },
+  { name: 'Playwright', logo: '/assets/logos/playwright.svg' }
+]
+---
+
+<article id="skills" class="skills">
+  <div class="d-flex flex-wrap justify-content-center align-items-center skills-grid">
+    {skills.map((skill) => (
+      <div class="square flex-column flex-md-row">
+        <div class="container d-flex flex-column align-items-center mb-1">
+          <img src={skill.logo} alt={skill.name} class="skill-logo" aria-label={skill.name} />
+        </div>
+        <div class="d-flex justify-content-center mt-2 square__name pb-2">
+          <p class="text d-none d-md-block mb-1" style="height:20px;">{skill.name}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</article>
+
+<script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+    window.anime({
+      targets: '.square',
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      easing: 'easeOutExpo',
+      duration: 800,
+      delay: anime.stagger(100, { start: 300 }),
+    });
+  });
+</script>
+
+
+<style>
+.square {
+  width: 8rem;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  height: 6rem;
+}
+
+.square:hover {
+  height: 8rem;
+  transform: translateY(-55px);
+}
+
+.square__name {
+  background: var(--text-gradient);
+  height: 20px;
+}
+
+.container {
+  margin-top: 1.5rem;
+}
+
+.text {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-color-secondary) !important;
+  margin: 0.5rem 0 0 0;
+}
+
+.text:hover {
+  color: var(--text-color);
+}
+
+.skills-grid {
+  gap: 2rem;
+  height: 120px;
+}
+
+.skill-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .square {
+    width: 6rem;
+    height: 6rem;
+    margin-top: 1rem;
+  }
+
+  .container {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .square {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .container {
+    margin-top: 0.25rem;
+  }
+}
+
+</style>

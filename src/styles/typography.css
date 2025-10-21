@@ -33,7 +33,7 @@
 }
 
 p {
-	color: var(--text-color) !important;
+	color: var(--text-color);
 	font-size: var(--text-general);
 	font-family: var(--font-body);
 }

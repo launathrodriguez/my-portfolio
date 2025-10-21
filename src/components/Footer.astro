@@ -18,27 +18,26 @@ const rightsLabel = Astro.props.rightsLabel;
             </a>
         ))}
     </button>
-    <p class="text-center text-sm py-4">
+    <p class="text-center text-sm py-4" style="color: var(--text-color-contrast);">
         &copy; {new Date().getFullYear()} Laura Nathalia. {rightsLabel}
     </p>
 </footer>
 
 <style>
 footer {
-    background: var(--bg-color);
+    background: var(--bg-gradient);
     border-top: var(--navbar-border);
-    margin-top: 5rem;
 }
 
 button {
     background: transparent;
     border: none;
-    color: var(--text-color);
+    color: var(--text-color-contrast);
     width: 60px;
 }
 
 a {
-    color: var(--text-color);
+    color: var(--text-color-contrast);
     text-decoration: none;
 }
 

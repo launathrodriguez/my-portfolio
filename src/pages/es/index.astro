@@ -1,5 +1,7 @@
 ---
-import Header from '../../components/header/Header.astro';
+import Navbar from '../../components/header/Navbar.astro';
+import ThemeToggle from '../../components/header/ThemeToggle.astro';
+import About from '../../components/about/About.astro';
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/hero/Hero.astro';
 import Experience from '../../components/experience/Experience.astro';
@@ -31,20 +33,6 @@ const experience = [
 const personalDescription = "Desarrolladora Frontend apasionada por construir aplicaciones web responsivas. Combino tecnologías y frameworks modernos con una sólida comprensión del negocio para transformar objetivos en experiencias digitales medibles e impactantes. Mi experiencia técnica me permite cerrar eficientemente la brecha entre diseño y desarrollo, asegurando una colaboración fluida y una entrega exitosa del producto. Me motiva el aprendizaje continuo y la adaptación a nuevas tecnologías para ofrecer soluciones innovadoras y de alta calidad."
 
 
-const personalItems = {
-	location: "Ubicación",
-	email: "Correo",
-	phone: "Teléfono",
-	linkedin: "LinkedIn",
-	github: "GitHub"
-}
-
-const menuLabels = {
-	home: "Inicio",
-	experience: "Experiencia",
-	projects: "Proyectos"
-};
-
 const projectsLabels = {
   title: "Proyectos",
   content: [
@@ -69,18 +57,43 @@ const projectsLabels = {
 ---
 
 <Layout style="margin: 100px;">
-	<Header menuLabels={menuLabels} />
+	<Navbar />
+  	<ThemeToggle />
 
 	<main>
-		<Hero 
-			description={personalDescription} 
-			personalItems={personalItems} />
-		<Experience 
-			title="Experiencia laboral"
-			experience={experience} />
-		<Projects title={projectsLabels.title} projects={projectsLabels.content} />
-		<LanguageSelector />
+		<section class="no-parallax particles-bg" id="home">
+			<Hero/>
+		</section>
+
+		<section class="parallax bg"></section>
+
+		<section class="no-parallax particles-bg" id="about">
+			<About />
+		</section>
+
+		<section class="parallax bg"></section>
+
+		<section class="no-parallax particles-bg" id="experience">
+			<Experience 
+				title="Work Experience" 
+				experience={experience} 
+			/>
+		</section>
+
+		<section class="parallax bg"></section>
+
+		<section class="no-parallax particles-bg" id="projects">
+			<Projects 
+				title={projectsLabels.title} 
+				projects={projectsLabels.content} 
+			/>
+		</section>
 	</main>
+
+	<LanguageSelector />
 	<Footer rightsLabel="Todos los derechos reservados." />
 </Layout>
-<style></style>
+
+<style>
+
+</style>

@@ -1,80 +1,125 @@
----
-import PersonalInfo from "./PersonalInfo.astro";
+--- 
+import { getLangFromUrl, useTranslations } from "../../i18n/utils"; 
 import PhotoFrame from "./PhotoFrame.astro";
-import Skills from "./Skills.astro";
+const lang = getLangFromUrl(Astro.url); 
+const t = useTranslations(lang); 
+--- 
+<script> 
+import { gsap } from 'gsap'; 
+import SplitType from 'split-type'; 
 
-const { description } = Astro.props;
-const personalItems = Astro.props.personalItems;
----
+const headingElement = document.getElementById('heading'); 
+const descriptionElement = document.getElementById('description');
+const photoComponent = document.getElementsByClassName("photo-wrapper");
 
-<section class="hero">
-  <article class="hero__container">
-    <h2 class="gradient-text mt-3 d-block d-md-none">Laura Nathalia Rodriguez</h2>
-    <div class="hero__content">
-      <span class="hero__text" order-2 order-md-1>
-        <PersonalInfo items={personalItems} class="d-none d-sm-block" />
-        <p class="mt-5">{description}</p>
+if (headingElement && descriptionElement) {
+  const headingSplit = new SplitType(headingElement, { types: "words" });
+  const descriptionSplit = new SplitType(descriptionElement, { types: "lines" });
+
+  const tl = gsap.timeline();
+
+  tl.from(headingSplit.words, {
+      y: 40,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+      stagger: 0.2,
+    })
+    .fromTo(
+    photoComponent,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "circ.inOut" }
+    )
+    .from(descriptionSplit.lines, {
+      x: 50,
+      opacity: 0,
+      stagger: 0.7,
+      duration: 0.9,
+      ease: "power2.out",
+    }, "+=0.1");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          tl.play();
+        } else {
+          tl.reverse();
+        }
+      });
+    },
+    {
+      threshold: 1, 
+    }
+  );
+
+  observer.observe(headingElement);
+}
+</script> 
+
+<article class="hero"> 
+  <div class="hero__container">
+    <h1 id="heading"
+      class="hero__title">
+      {t('hero.title')}
+      <span class="hero__title__name">
+        Laura Nathalia
       </span>
-      <PhotoFrame order-1 order-md-2 />
-    </div>
-  </article>
+    </h1> 
+    <h3 id="description"
+      class="hero__content mt-4">{t('hero.description')}</h3>
+  </div>
+  <PhotoFrame id="photo" />
+</article> 
 
-  <Skills />
-</section>
+<style is:global> 
+.hero { 
+  animation: presentation 3s linear forwards; 
+  padding: 5rem 25rem; 
+  height: 120vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
 
-<style>
-.hero {
-  animation: presentation 3s linear forwards;
-  padding: 5rem 25rem;
+.hero__container {
+  width: 60%;
 }
 
-.hero .hero__container {
-  border-radius: 1rem;
-  border: var(--navbar-border);
-  padding: 3rem 5rem;
-  background: var(--bg-color);
+.hero__title {
+  font-size: 6rem;
+  font-weight: 100;
+  letter-spacing: 0rem;
+}
+
+.hero__title__name {
+  font-weight: 700;
+  letter-spacing: 0.5rem;
+  color: var(--text-color-highlight);
+}
+.hero__title .word {
+  margin-right: 0.05em;
+}
+
+.hero__title .word, 
+.hero__content .line {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 .hero__content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-  justify-content: space-between;
+  font-weight: 200;
+  font-size: var(--text-xl);
 }
 
-.hero .hero__text {
-  flex: 1 1 300px;
-  font-size: var(--text-md);
-  padding: 3rem 5rem;
-  font-weight: 600;
-  min-width: 250px;
-}
+@media (max-width: 1024px) { 
+  .hero .hero__container { padding: 2rem 2rem; } 
+  .hero .hero__text { padding: 2rem 0; text-align: center; } 
+  .hero__content { flex-direction: column; align-items: center; } 
+} 
 
-@media (max-width: 1024px) {
-  .hero .hero__container {
-    padding: 2rem 2rem;
-  }
-
-  .hero .hero__text {
-    padding: 2rem 0;
-    text-align: center;
-  }
-
-  .hero__content {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero {
-    padding: 1rem 1rem;
-  }
-
-  .hero .hero__text {
-    font-size: var(--text-sm);
-    padding: 1rem 0;
-  }
-}
+@media (max-width: 600px) { 
+  .hero { padding: 1rem 1rem; } 
+  .hero .hero__text { font-size: var(--text-sm); padding: 1rem 0; } 
+} 
 </style>

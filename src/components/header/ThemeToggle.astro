@@ -31,10 +31,14 @@ import { Icon } from 'astro-icon/components';
 
 <style>
 .theme-toggle-wrapper {
+    position: fixed;
+    top: 4rem;
+    right: 5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
     margin-left: 10rem;
+    z-index: 1000;
 }
 
 .theme-toggle {

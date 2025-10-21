@@ -1,0 +1,78 @@
+--- 
+import { getLangFromUrl, useTranslations } from "../../i18n/utils"; 
+import PersonalInfo from "./PersonalInfo.astro"; 
+import PhotoFrame from "./PhotoFrame.astro"; 
+import Skills from "./Skills.astro"; 
+const lang = getLangFromUrl(Astro.url); 
+const t = useTranslations(lang); 
+const personalItems = Astro.props.personalItems; 
+--- 
+<script> 
+import { gsap } from 'gsap'; 
+import SplitType from 'split-type'; 
+
+const headingElement = document.getElementById('my-animated-heading'); 
+if (headingElement) { 
+  const split = new SplitType(headingElement, { types: 'chars' }); 
+  gsap.from(split.chars, { 
+    y: 100, 
+    opacity: 0, 
+    stagger: 0.1, 
+    duration: 0.9
+  }); 
+} 
+</script> 
+
+<section class="hero"> 
+  <article class="hero__container"> 
+    <h2 class="gradient-text mt-3 d-block" id="my-animated-heading">
+      Laura Nathalia Rodriguez
+    </h2> 
+    <div class="hero__content"> 
+      <span class="hero__text" order-2 order-md-1> 
+        <PersonalInfo items={personalItems} class="d-none d-sm-block" /> 
+        <p class="mt-5">{t('hero.description')}</p> 
+      </span> <PhotoFrame order-1 order-md-2 /> 
+    </div> 
+  </article> 
+  <Skills /> 
+</section> 
+<style> 
+.hero { 
+  animation: presentation 3s linear forwards; 
+  padding: 5rem 25rem; 
+  } 
+.hero .hero__container { 
+  border-radius: 1rem; 
+  border: var(--navbar-border); 
+  padding: 3rem 5rem; 
+  background: var(--bg-color); 
+  } 
+
+.hero__content { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 2rem; 
+  align-items: center; 
+  justify-content: space-between; 
+} 
+
+.hero .hero__text { 
+  flex: 1 1 300px; 
+  font-size: var(--text-md); 
+  padding: 3rem 5rem; 
+  font-weight: 600; 
+  min-width: 250px; 
+} 
+
+@media (max-width: 1024px) { 
+  .hero .hero__container { padding: 2rem 2rem; } 
+  .hero .hero__text { padding: 2rem 0; text-align: center; } 
+  .hero__content { flex-direction: column; align-items: center; } 
+} 
+
+@media (max-width: 600px) { 
+  .hero { padding: 1rem 1rem; } 
+  .hero .hero__text { font-size: var(--text-sm); padding: 1rem 0; } 
+} 
+</style>
